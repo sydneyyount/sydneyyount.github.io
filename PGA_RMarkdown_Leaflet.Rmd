@@ -1,0 +1,38 @@
+---
+title: "Chiptole Locations"
+author: "Sydney Yount"
+date: "5/10/2022"
+output: html_document
+---
+
+## Assignment Description
+
+Create a web page using R Markdown that features a map created with Leaflet. 
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+## Loading Required Packagers
+
+```{r}
+library(leaflet)
+library(htmltools)
+```
+## Loading Data Set and Creating Data Frame
+
+Goall: Map the location of every chiptole restaurant in the United States. Dataset includes the state, location, address, latitude and longitude. 
+
+Source: https://www.kaggle.com/datasets/jeffreybraun/chipotle-locations?resource=download
+
+```{r}
+chipotleData <- read.csv(file = "chipotle_stores.csv",header=TRUE)
+cDF <- data.frame(State = chipotleData$state, Location = chipotleData$location, Address = chipotleData$address, Latitude = chipotleData$latitude, Longitude = chipotleData$longitude)
+```
+## Creating Map using leaflet 
+Ensure map has clusters due to high density of points on map.  
+```{r}
+map <- cDF %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup = paste("Location: ",htmlEscape(cDF$Location),"<br>Address: ",htmlEscape(cDF$Address)), clusterOptions = markerClusterOptions())
+map
+```
