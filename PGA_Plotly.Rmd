@@ -1,0 +1,32 @@
+---
+title: "Developing Data Products Week 3: Plotly"
+author: "Sydney Yount"
+date: "5/20/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Loading Required Packages and Us Arrests Dataset from R
+
+```{r, echo=TRUE}
+library(plotly)
+df <- USArrests
+df$region <- tolower(rownames(USArrests))
+```
+#Data Visualization:
+```{r}
+ fig <- plot_ly(x = df$UrbanPop, 
+         y = df$Murder, 
+         type = "scatter", 
+         mode = "markers", 
+         color = df$region)
+
+fig <- fig %>% layout(title = 'Urban Population vs. Murder Arrests by State',
+         xaxis = list(title = '% Urban Population'),
+         yaxis = list(title = 'Murder Arrests (per 100,000'))
+
+fig
+```
