@@ -1,0 +1,36 @@
+Developing Data Products Final Project Presentation ShinyApp with Iris Dataset
+========================================================
+author: Sydney Yount
+date: 5/25/22
+autosize: true
+
+App Description
+========================================================
+
+The purpose of this app is to explore the spread of different sepal and petal dimensions between species of Iris's
+
+The user can use radio buttons to select 1 of 4 variables to designate what Iris dimension is desired to be visualized and explored. The variables are Petal Length, Petal Width, Sepal Length and Sepal Width.  
+
+A histogram will be displayed to show the spread of the dimension per iris species for comparison. Different species of Iris's are plotted in different colors. 
+
+
+Iris Dataset
+========================================================
+The data used for this ShinyApp is the iris data set available within R Studio. A summary of the data set can be seen below:
+```{r}
+summary(iris)
+```
+
+ShinyApp Link: 
+========================================================
+Visit the web app here: [Iris Shiny Web App](https://sydneyyount.shinyapps.io/developingdataproductsfinalproject/)
+
+Here is a sample output of the web app:
+
+```{r, echo=FALSE}
+library(ggplot2)
+ qplot(Petal.Width, data=iris, geom='histogram', fill=Species, alpha=I(0.5), ylab = "count")
+```
+Conclusions: 
+========================================================
+Here, a Shiny Web App was developed to investigate the spread of various dimensions across 3 species of Iris. This app is based on the Iris data set available through R studio. This app takes a user input to determine the dimension of interest and will use that to plot the relevant data. 
